@@ -15,3 +15,7 @@ cd $(dirname $(readlink -f $0)) # jump to the script directory
 
 # pacman.conf
 ln-cfg pacman.conf /etc/pacman.conf
+
+
+# swap.conf must be placed after the installation of systemd-swap
+# ln-cfg swap.conf /etc/systemd/swap.conf
