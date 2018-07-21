@@ -1,0 +1,20 @@
+* Video driver
+  Noveau
+* Kernel parameters
+** Issue 1
+    pcieport 0000:00:1c.5: PCIe Bus Error: severity=Corrected, type=Physical Layer, device [8086:9d15]
+    error status/mask=00000001/00002000
+    [ 0] Receiver Error		(First)
+** Issue 2
+   Suspend won't work.
+** Issue 3
+   System won't reboot or shutdown after suspending.
+** Parameters
+   Summary:
+   GRUB_CMDLINE_LINUX_DEFAULT="pci=noaer nouveau.modeset=0"
+*** pci=nomsi
+    Solves issue 1, raises issue 2.
+*** pci=noaer
+    Solves issues 1 and 2.
+*** nouveau.modeset=0
+    Solves issue 3.
