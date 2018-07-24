@@ -19,11 +19,14 @@ ln-cfg pacman.conf /etc/pacman.conf
 # swap.conf must be placed after the installation of systemd-swap.
 ln-cfg swap.conf /etc/systemd/swap.conf
 
-# sudoers must be placed after the installation of sudo.
-ln-cfg sudoers /etc/sudoers
+# Network manager dns settings
+ln-cfg 10-dns.conf /etc/NetworkManager/conf.d/10-dns.conf
+ln-cfg resolv.conf /etc/resolv.conf
 
-# nvidia.conf must be placed after the installation of xorg.
-ln-cfg 20-nvidia.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+
+# sudoers must be placed after the installation of sudo.
+# ln-cfg sudoers /etc/sudoers # This won't work because the sudores file must be owned by root.
 
 # exports must be placed after the installation of nfs-utils.
-ln-cfg exports /etc/exports
+# ln-cfg exports /etc/exports
+

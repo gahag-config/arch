@@ -18,3 +18,5 @@
     Solves issues 1 and 2.
 *** nouveau.modeset=0
     Solves issue 3.
+* CPU fan sensor
+  [[https://www.reddit.com/r/archlinux/comments/68m82j/no_sysclassthermalthermal_zone/][Possible solution (not attempted)]]
