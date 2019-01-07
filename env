@@ -1,0 +1,41 @@
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+
+export HISTFILE="$XDG_DATA_HOME/bash/history"
+
+
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+
+export XCOMPOSEFILE="$XDG_CONFIG_HOME/X11/xcompose"
+export XMODMAP="$XDG_CONFIG_HOME/X11/xmodmap"
+
+
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
+
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+
+
+export RANDFILE="$XDG_DATA_HOME/openssl/rnd"
+
+
+export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/aspell.conf; personal $XDG_CONFIG_HOME/aspell/en.pws; repl $XDG_CONFIG_HOME/aspell/en.prepl"
+
+
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+
+
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
+
+
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+
+
+export STACK_ROOT="$XDG_DATA_HOME/stack"

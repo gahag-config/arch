@@ -1,22 +1,67 @@
 * Video driver
-  Noveau
-* Kernel parameters
-** Issue 1
+** Noveau
+*** Issue 1
     pcieport 0000:00:1c.5: PCIe Bus Error: severity=Corrected, type=Physical Layer, device [8086:9d15]
     error status/mask=00000001/00002000
     [ 0] Receiver Error		(First)
-** Issue 2
-   Suspend won't work.
-** Issue 3
-   System won't reboot or shutdown after suspending.
-** Parameters
-   Summary:
-   GRUB_CMDLINE_LINUX_DEFAULT="pci=noaer nouveau.modeset=0"
-*** pci=nomsi
-    Solves issue 1, raises issue 2.
-*** pci=noaer
-    Solves issues 1 and 2.
-*** nouveau.modeset=0
-    Solves issue 3.
+*** Issue 2
+    Suspend won't work.
+*** Issue 3
+    System won't reboot or shutdown after suspending.
+*** Solution: Kernel parameters
+    Summary:
+    : GRUB_CMDLINE_LINUX_DEFAULT="pci=noaer nouveau.modeset=0"
+**** pci=nomsi
+     Solves issue 1, raises issue 2.
+**** pci=noaer
+     Solves issues 1 and 2.
+**** nouveau.modeset=0
+     Solves issue 3.
+** Nvidia
+*** Fonts
+    Set DPI in KDE font settings to 96.
+*** nvidia
+**** Unsolved issues
+     Suspend works only when not in a X session.
+*** nvidia-lts
+    Works out of the box.
 * CPU fan sensor
   [[https://www.reddit.com/r/archlinux/comments/68m82j/no_sysclassthermalthermal_zone/][Possible solution (not attempted)]]
+* Hibernation
+  Hibernation requires a static swap file/partition.
+  The swap device must be active. To activate it automatically at startup,
+  add an entry to =/etc/fstab=.
+** Kernel
+   As of <2018-09-03 Mon>, hibernation only works with the lts kernel.
+   #+begin_src bash
+     pacman -S linux-lts
+     pacman -R linux
+     grub-mkconfig -o /boot/grub/grub.cfg
+   #+end_src
+** Initcpio
+   Add ~resume~ to ~HOOKS=(...)~, *after the ~udev~ hook*.
+   Regenerate the initcpio:
+   #+begin_src bash
+   mkinitcpio -p linux-lts
+   #+end_src
+** Grub
+   Summary:
+   : GRUB_CMDLINE_LINUX_DEFAULT="resume=<swap partition> resume_offset=<file offset>"
+*** resume=<swap partition>
+    Set the swap partition (or the partition where the swap file is located).
+    E.g.: /dev/sda2
+*** resume_offset=<file offset>
+    Set the swap file offset in the partition.
+    The swap file offset can be obtained with:
+    : filefrag -v <swap file>
+    The output is in a table format. The required value is located in the first row of the
+    physical_offset column.
+    For example:
+    : # filefrag -v /swapfile
+    : Filesystem type is: ef53
+    : File size of /swapfile is 4294967296 (1048576 blocks of 4096 bytes)
+    :  ext:     logical_offset:        physical_offset: length:   expected: flags:
+    :    0:        0..       0:      38912..     38912:      1:            
+    :    1:        1..   22527:      38913..     61439:  22527:             unwritten
+    :    2:    22528..   53247:     899072..    929791:  30720:      61440: unwritten
+    The value is the first 38912 with the two periods.

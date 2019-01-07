@@ -30,3 +30,6 @@ ln-cfg resolv.conf /etc/resolv.conf
 # exports must be placed after the installation of nfs-utils.
 # ln-cfg exports /etc/exports
 
+
+# env
+ln-cfg env ~/.profile
