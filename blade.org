@@ -65,3 +65,5 @@
     :    1:        1..   22527:      38913..     61439:  22527:             unwritten
     :    2:    22528..   53247:     899072..    929791:  30720:      61440: unwritten
     The value is the first 38912 with the two periods.
+* Battery
+  [[https://wiki.archlinux.org/index.php/TLP][TLP]]
