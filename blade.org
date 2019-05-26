@@ -65,5 +65,37 @@
     :    1:        1..   22527:      38913..     61439:  22527:             unwritten
     :    2:    22528..   53247:     899072..    929791:  30720:      61440: unwritten
     The value is the first 38912 with the two periods.
-* Battery
-  [[https://wiki.archlinux.org/index.php/TLP][TLP]]
+* Power management
+** TLP
+   [[https://wiki.archlinux.org/index.php/TLP][TLP: Linux Advanced Power Management]]
+*** Audio
+    TLP disables audio hardware on idle by default. Toggling the audio card's power state
+    can cause a popping sound or noticeable latency on some broken hardware.
+    #+name: tlp-audio-patch
+    #+begin_example
+      --- tlp	2019-05-26 15:50:43.850600955 -0300
+      +++ tlp	2019-05-26 15:53:25.714254941 -0300
+      @@ -231,12 +231,12 @@
+       # A value of 0 disables, >=1 enables power saving (recommended: 1).
+       # Default: <none>
+       SOUND_POWER_SAVE_ON_AC=0
+      -SOUND_POWER_SAVE_ON_BAT=1
+      +SOUND_POWER_SAVE_ON_BAT=0
+
+       # Disable controller too (HDA only): Y/N.
+       # Note: effective only when SOUND_POWER_SAVE_ON_AC/BAT is activated.
+       # Default: Y
+      -SOUND_POWER_SAVE_CONTROLLER=Y
+      +SOUND_POWER_SAVE_CONTROLLER=N
+
+       # Power off optical drive in UltraBay/MediaBay: 0=disable, 1=enable.
+       # Drive can be powered on again by releasing (and reinserting) the eject lever
+    #+end_example
+    Tramp's =sudo= won't work with Babel's =stdin=.
+    #+begin_src bash :dir /etc/default :stdin tlp-audio-patch :results verbatim
+      tmpfile=$(mktemp) # create a temp file for the patch, since we'll need stdin for sudo.
+      cat > "$tmpfile"  # dump contents
+      echo n | sudo -p '' --stdin patch -i "$tmpfile"
+    #+end_src
+    #+results:
+    : patching file tlp
