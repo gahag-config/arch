@@ -65,12 +65,23 @@
     :    1:        1..   22527:      38913..     61439:  22527:             unwritten
     :    2:    22528..   53247:     899072..    929791:  30720:      61440: unwritten
     The value is the first 38912 with the two periods.
+* TPM
+  Disable fast boot in bios. Then blacklist the tpm kernel modules:
+  =/etc/modprobe.d/blacklist.conf=
+  #+begin_example
+    blacklist tpm_crb
+    blacklist tpm_tis
+    blacklist tpm_tis_core
+    blacklist tpm
+    # blacklist rng_core
+  #+end_example
 * Power management
 ** TLP
    [[https://wiki.archlinux.org/index.php/TLP][TLP: Linux Advanced Power Management]]
 *** Audio
     TLP disables audio hardware on idle by default. Toggling the audio card's power state
     can cause a popping sound or noticeable latency on some broken hardware.
+    The popping sound can also be fixed by disabling [[TPM]].
     #+name: tlp-audio-patch
     #+begin_example
       --- tlp	2019-05-26 15:50:43.850600955 -0300
