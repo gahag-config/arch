@@ -1,0 +1,11 @@
+* Grub options
+  Edit ~/etc/default/grub~
+** Override EDID in kernel cmdline
+   GRUB_CMDLINE_LINUX_DEFAULT="drm_kms_helper.edid_firmware=edid/1920x1080.bin"
+** High resolution TTY
+   GRUB_GFXMODE=1920x1080x32
+* Nvidia
+** Check DPI
+  #+begin_src bash
+  xdpyinfo | grep -B2 resolution
+  #+end_src

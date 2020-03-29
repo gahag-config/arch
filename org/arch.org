@@ -1,0 +1,13 @@
+* Packages
+  #+begin_src bash
+    #!/usr/bin/env bash
+
+    # To use this script, backup the package cache (/var/cache/pacman/pkg/)
+    # to a folder named pkg-cache.
+
+    [[ -d ./pkg-cache ]] || exit 1
+
+    cp ./pkg-cache/* /var/cache/pacman/pkg/
+
+    pacman -S --needed - < packages.txt
+  #+end_src
