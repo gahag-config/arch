@@ -5,7 +5,7 @@ function ln-cfg {
     echo "[Warning] Backing up $2..."
     mv -i "$2" "$2.bak"
   fi
-  
+
   ln -s "$(pwd)/$1" "$2"
 }
 
@@ -18,6 +18,9 @@ ln-cfg pacman.conf /etc/pacman.conf
 
 # swap.conf must be placed after the installation of systemd-swap.
 ln-cfg swap.conf /etc/systemd/swap.conf
+
+# earlyoom must be placed after the installation of earlyoom
+ln-cfg earlyoom /etc/default/earlyoom
 
 # Network manager dns settings
 ln-cfg 10-dns.conf /etc/NetworkManager/conf.d/10-dns.conf
