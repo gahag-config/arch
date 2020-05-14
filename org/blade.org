@@ -84,8 +84,8 @@
     The popping sound can also be fixed by disabling [[TPM]].
     #+name: tlp-audio-patch
     #+begin_example
-      --- tlp	2019-05-26 15:50:43.850600955 -0300
-      +++ tlp	2019-05-26 15:53:25.714254941 -0300
+      --- tlp.conf	2019-05-26 15:50:43.850600955 -0300
+      +++ tlp.conf	2019-05-26 15:53:25.714254941 -0300
       @@ -231,12 +231,12 @@
        # A value of 0 disables, >=1 enables power saving (recommended: 1).
        # Default: <none>
@@ -103,7 +103,7 @@
        # Drive can be powered on again by releasing (and reinserting) the eject lever
     #+end_example
     Tramp's =sudo= won't work with Babel's =stdin=.
-    #+begin_src bash :dir /etc/default :stdin tlp-audio-patch :results verbatim
+    #+begin_src bash :dir /etc/ :stdin tlp-audio-patch :results verbatim
       tmpfile=$(mktemp) # create a temp file for the patch, since we'll need stdin for sudo.
       cat > "$tmpfile"  # dump contents
       echo n | sudo -p '' --stdin patch -i "$tmpfile"
