@@ -17,7 +17,7 @@ cd $(dirname $(readlink -f $0)) # jump to the script directory
 ln-cfg pacman.conf /etc/pacman.conf
 
 # swap.conf must be placed after the installation of systemd-swap.
-ln-cfg swap.conf /etc/systemd/swap.conf
+# ln-cfg swap.conf /etc/systemd/swap.conf
 
 # earlyoom must be placed after the installation of earlyoom
 ln-cfg earlyoom /etc/default/earlyoom

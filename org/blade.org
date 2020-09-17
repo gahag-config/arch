@@ -110,3 +110,8 @@
     #+end_src
     #+results:
     : patching file tlp
+* SSD
+  Enable periodic trim:
+  #+begin_src bash
+    systemctl enable fstrim.timer
+  #+end_src

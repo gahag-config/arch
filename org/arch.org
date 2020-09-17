@@ -11,3 +11,8 @@
 
     pacman -S --needed - < packages.txt
   #+end_src
+* Grub
+  #+begin_src conf
+    GRUB_GFXMODE=1920x1080x32
+    GRUB_BACKGROUND="/boot/grub/wallpaper.png"
+  #+end_src
