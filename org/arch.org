@@ -16,7 +16,3 @@
     GRUB_GFXMODE=1920x1080x32
     GRUB_BACKGROUND="/boot/grub/wallpaper.png"
   #+end_src
-* Keeb
-  1. Select =Hyper is mapped to win= in advanced keyboard settings.
-  2. Remove the shortcut for the start menu (something like =alt+f1=).
-     For some reason, this has the side effect of preventing =win= from opening the menu.
